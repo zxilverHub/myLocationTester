@@ -2,7 +2,7 @@ const longitude = document.querySelector('#longitude'),
       latitude = document.querySelector('#latitude'),
       getBtn = document.getElementById('get-btn'),
       stopBtn = document.getElementById('stop-btn'),
-      myLocation = setInterval(locationSetter, 1000);
+      myLocation = setInterval(locationSetter, 10);
 
 
 function getLocation() {
