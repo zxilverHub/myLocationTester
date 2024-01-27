@@ -38,20 +38,24 @@ stopBtn.addEventListener('click', ()=>{
 const alongitude = document.querySelector('#longitude-api'),
       alatitude = document.querySelector('#latitude-api'),
       astopBtn = document.getElementById('stop-btn-api'),
-      amyLocation = null;
+      counter = document.getElementById('counter');
+
+let count = 0;
 
 
-navigator.geolocation.getCurrentPosition(position => {
+const watch = navigator.geolocation.watchPosition(position => {
     const { latitude, longitude } = position.coords;
 
-    amyLocation = setInterval(aGetLocation(latitude, longitude), 10);
+    count+=1;
+    aGetLocation(latitude, longitude, count);
 });
 
-function aGetLocation(la, lo) {
+function aGetLocation(la, lo, c) {
     alongitude.innerHTML = lo
     alatitude.innerHTML = la
+    counter.innerHTML = c;
 }
 
 astopBtn.addEventListener('click', ()=>{
-    clearInterval(amyLocation);
+    navigator.geolocation.clearWatch(watch);
 })
